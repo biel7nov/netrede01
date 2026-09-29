@@ -325,11 +325,11 @@ export default function NetRedeDashboard() {
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="text-xs font-semibold text-slate-300 block mb-1">E-mail</label>
-              <input type="email" value={emailAuth} onChange={e => setEmailAuth(e.target.value)} placeholder="exemplo@netrede.com" className="w-full p-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-blue-500" required />
+              <input type="email" value={emailAuth} onChange={e => setEmailAuth(e.target.value)} placeholder="exemplo@netrede.com" className="w-full p-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-400 text-sm focus:outline-blue-500" required />
             </div>
             <div>
               <label className="text-xs font-semibold text-slate-300 block mb-1">Palavra-passe</label>
-              <input type="password" value={passwordAuth} onChange={e => setPasswordAuth(e.target.value)} placeholder="••••••••" className="w-full p-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-blue-500" required />
+              <input type="password" value={passwordAuth} onChange={e => setPasswordAuth(e.target.value)} placeholder="••••••••" className="w-full p-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-400 text-sm focus:outline-blue-500" required />
             </div>
             <button type="submit" disabled={submittingAuth} className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-bold py-3 rounded-lg text-sm transition mt-2 shadow-lg shadow-blue-600/30">
               {submittingAuth ? 'A verificar...' : 'Entrar no Sistema'}
@@ -396,9 +396,9 @@ export default function NetRedeDashboard() {
               {abaAtiva === 'usuarios' && (
                 <div className="space-y-6">
                   <form onSubmit={cadastrarUsuario} className="bg-slate-50 p-4 rounded-lg border border-slate-200 grid grid-cols-1 md:grid-cols-4 gap-3">
-                    <input type="text" placeholder="Nome Completo *" value={novoUsuario.nome} onChange={e => setNovoUsuario({ ...novoUsuario, nome: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required />
-                    <input type="email" placeholder="E-mail *" value={novoUsuario.email} onChange={e => setNovoUsuario({ ...novoUsuario, email: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required />
-                    <select value={novoUsuario.funcao} onChange={e => setNovoUsuario({ ...novoUsuario, funcao: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white">
+                    <input type="text" placeholder="Nome Completo *" value={novoUsuario.nome} onChange={e => setNovoUsuario({ ...novoUsuario, nome: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" required />
+                    <input type="email" placeholder="E-mail *" value={novoUsuario.email} onChange={e => setNovoUsuario({ ...novoUsuario, email: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" required />
+                    <select value={novoUsuario.funcao} onChange={e => setNovoUsuario({ ...novoUsuario, funcao: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800">
                       <option value="Administrador">Administrador</option>
                       <option value="Técnico">Técnico de Rua</option>
                       <option value="Atendente">Atendimento</option>
@@ -434,19 +434,19 @@ export default function NetRedeDashboard() {
               {/* --- ABA CLIENTES --- */}
               {abaAtiva === 'clientes' && (
                 <div className="space-y-6">
-                  <div className="relative"><input type="text" placeholder="Pesquisar cliente por nome, endereço ou telefone..." value={pesquisaCliente} onChange={e => setPesquisaCliente(e.target.value)} className="w-full p-3 border border-slate-300 rounded-lg text-sm outline-blue-600 bg-slate-50 focus:bg-white transition" /></div>
+                  <div className="relative"><input type="text" placeholder="Pesquisar cliente por nome, endereço ou telefone..." value={pesquisaCliente} onChange={e => setPesquisaCliente(e.target.value)} className="w-full p-3 border border-slate-300 rounded-lg text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400 transition" /></div>
                   {clienteEmEdicao ? (
                     <form onSubmit={salvarEdicaoCliente} className="bg-blue-50 p-4 rounded-lg border border-blue-200 grid grid-cols-1 md:grid-cols-4 gap-3">
-                      <div><label className="text-xs font-bold text-blue-900 block mb-1">Editar Nome *</label><input type="text" value={clienteEmEdicao.nome} onChange={e => setClienteEmEdicao({ ...clienteEmEdicao, nome: e.target.value })} className="w-full p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required /></div>
-                      <div><label className="text-xs font-bold text-blue-900 block mb-1">Editar Endereço *</label><input type="text" value={clienteEmEdicao.endereco} onChange={e => setClienteEmEdicao({ ...clienteEmEdicao, endereco: e.target.value })} className="w-full p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required /></div>
-                      <div><label className="text-xs font-bold text-blue-900 block mb-1">Editar Telefone</label><input type="text" value={clienteEmEdicao.telefone || ''} onChange={e => setClienteEmEdicao({ ...clienteEmEdicao, telefone: e.target.value })} className="w-full p-2.5 border rounded-md text-sm outline-blue-600 bg-white" /></div>
+                      <div><label className="text-xs font-bold text-blue-900 block mb-1">Editar Nome *</label><input type="text" value={clienteEmEdicao.nome} onChange={e => setClienteEmEdicao({ ...clienteEmEdicao, nome: e.target.value })} className="w-full p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800" required /></div>
+                      <div><label className="text-xs font-bold text-blue-900 block mb-1">Editar Endereço *</label><input type="text" value={clienteEmEdicao.endereco} onChange={e => setClienteEmEdicao({ ...clienteEmEdicao, endereco: e.target.value })} className="w-full p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800" required /></div>
+                      <div><label className="text-xs font-bold text-blue-900 block mb-1">Editar Telefone</label><input type="text" value={clienteEmEdicao.telefone || ''} onChange={e => setClienteEmEdicao({ ...clienteEmEdicao, telefone: e.target.value })} className="w-full p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800" /></div>
                       <div className="flex items-end gap-2"><button type="submit" className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-md text-sm transition">Guardar</button><button type="button" onClick={() => setClienteEmEdicao(null)} className="flex-1 bg-slate-400 hover:bg-slate-500 text-white font-bold py-2.5 rounded-md text-sm transition">Cancelar</button></div>
                     </form>
                   ) : (
                     <form onSubmit={cadastrarCliente} className="bg-slate-50 p-4 rounded-lg border border-slate-200 grid grid-cols-1 md:grid-cols-4 gap-3">
-                      <input type="text" placeholder="Nome do Cliente *" value={novoCliente.nome} onChange={e => setNovoCliente({ ...novoCliente, nome: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required />
-                      <input type="text" placeholder="Endereço (Rua, Nº) *" value={novoCliente.endereco} onChange={e => setNovoCliente({ ...novoCliente, endereco: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required />
-                      <input type="text" placeholder="Telefone / Contacto" value={novoCliente.telefone} onChange={e => setNovoCliente({ ...novoCliente, telefone: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" />
+                      <input type="text" placeholder="Nome do Cliente *" value={novoCliente.nome} onChange={e => setNovoCliente({ ...novoCliente, nome: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" required />
+                      <input type="text" placeholder="Endereço (Rua, Nº) *" value={novoCliente.endereco} onChange={e => setNovoCliente({ ...novoCliente, endereco: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" required />
+                      <input type="text" placeholder="Telefone / Contacto" value={novoCliente.telefone} onChange={e => setNovoCliente({ ...novoCliente, telefone: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" />
                       <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-md text-sm transition">+ Cadastrar Cliente</button>
                     </form>
                   )}
@@ -491,7 +491,7 @@ export default function NetRedeDashboard() {
                                 </td>
                               </tr>
                             )
-                        })}
+                          })}
                       </tbody>
                     </table>
                   </div>
@@ -502,11 +502,11 @@ export default function NetRedeDashboard() {
               {abaAtiva === 'os' && (
                 <div className="space-y-6">
                   <form onSubmit={cadastrarOS} className="bg-slate-50 p-4 rounded-lg border border-slate-200 grid grid-cols-1 md:grid-cols-3 gap-3">
-                    <select value={novaOS.cliente_id} onChange={e => setNovaOS({ ...novaOS, cliente_id: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required><option value="">Selecione o Cliente *</option>{clientes.map(c => <option key={c.id} value={c.id}>{c.nome}</option>)}</select>
-                    <select value={novaOS.tipo} onChange={e => setNovaOS({ ...novaOS, tipo: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white"><option value="instalacao">Instalação</option><option value="religamento">Religamento</option><option value="manutencao">Manutenção</option></select>
-                    <input type="date" value={novaOS.data_agendamento} onChange={e => setNovaOS({ ...novaOS, data_agendamento: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required />
-                    <input type="text" placeholder="Técnico Responsável *" value={novaOS.responsavel} onChange={e => setNovaOS({ ...novaOS, responsavel: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required />
-                    <input type="text" placeholder="Observações técnicas" value={novaOS.observacoes} onChange={e => setNovaOS({ ...novaOS, observacoes: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white md:col-span-2" />
+                    <select value={novaOS.cliente_id} onChange={e => setNovaOS({ ...novaOS, cliente_id: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800" required><option value="">Selecione o Cliente *</option>{clientes.map(c => <option key={c.id} value={c.id}>{c.nome}</option>)}</select>
+                    <select value={novaOS.tipo} onChange={e => setNovaOS({ ...novaOS, tipo: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800"><option value="instalacao">Instalação</option><option value="religamento">Religamento</option><option value="manutencao">Manutenção</option></select>
+                    <input type="date" value={novaOS.data_agendamento} onChange={e => setNovaOS({ ...novaOS, data_agendamento: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800" required />
+                    <input type="text" placeholder="Técnico Responsável *" value={novaOS.responsavel} onChange={e => setNovaOS({ ...novaOS, responsavel: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" required />
+                    <input type="text" placeholder="Observações técnicas" value={novaOS.observacoes} onChange={e => setNovaOS({ ...novaOS, observacoes: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400 md:col-span-2" />
                     <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-md text-sm transition md:col-span-3">+ Criar Ordem de Serviço</button>
                   </form>
                   <div className="overflow-x-auto">
@@ -537,10 +537,10 @@ export default function NetRedeDashboard() {
                   )}
 
                   <form onSubmit={cadastrarPagamento} className="bg-slate-50 p-4 rounded-lg border border-slate-200 grid grid-cols-1 md:grid-cols-5 gap-3">
-                    <select value={novoPagamento.cliente_id} onChange={e => setNovoPagamento({ ...novoPagamento, cliente_id: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required><option value="">Selecione o Cliente *</option>{clientes.map(c => <option key={c.id} value={c.id}>{c.nome}</option>)}</select>
-                    <input type="number" step="0.01" placeholder="Valor (R$) *" value={novoPagamento.valor} onChange={e => setNovoPagamento({ ...novoPagamento, valor: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required />
-                    <input type="text" placeholder="Mês Ref. (10/2026) *" value={novoPagamento.mes_referencia} onChange={e => setNovoPagamento({ ...novoPagamento, mes_referencia: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required />
-                    <input type="date" value={novoPagamento.data_vencimento} onChange={e => setNovoPagamento({ ...novoPagamento, data_vencimento: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required />
+                    <select value={novoPagamento.cliente_id} onChange={e => setNovoPagamento({ ...novoPagamento, cliente_id: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800" required><option value="">Selecione o Cliente *</option>{clientes.map(c => <option key={c.id} value={c.id}>{c.nome}</option>)}</select>
+                    <input type="number" step="0.01" placeholder="Valor (R$) *" value={novoPagamento.valor} onChange={e => setNovoPagamento({ ...novoPagamento, valor: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" required />
+                    <input type="text" placeholder="Mês Ref. (10/2026) *" value={novoPagamento.mes_referencia} onChange={e => setNovoPagamento({ ...novoPagamento, mes_referencia: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" required />
+                    <input type="date" value={novoPagamento.data_vencimento} onChange={e => setNovoPagamento({ ...novoPagamento, data_vencimento: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800" required />
                     <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-md text-sm transition">+ Lançar Cobrança</button>
                   </form>
                   <div className="overflow-x-auto">
@@ -564,9 +564,9 @@ export default function NetRedeDashboard() {
               {abaAtiva === 'estoque' && (
                 <div className="space-y-6">
                   <form onSubmit={cadastrarMaterial} className="bg-slate-50 p-4 rounded-lg border border-slate-200 grid grid-cols-1 md:grid-cols-5 gap-3">
-                    <input type="text" placeholder="Nome do Material *" value={novoMaterial.nome} onChange={e => setNovoMaterial({ ...novoMaterial, nome: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white md:col-span-2" required />
-                    <input type="number" placeholder="Qtd. Inicial *" value={novoMaterial.quantidade} onChange={e => setNovoMaterial({ ...novoMaterial, quantidade: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required />
-                    <select value={novoMaterial.unidade} onChange={e => setNovoMaterial({ ...novoMaterial, unidade: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white"><option value="un">Unidades (un)</option><option value="metros">Metros (m)</option><option value="caixas">Caixas (cx)</option><option value="pacotes">Pacotes (pct)</option></select>
+                    <input type="text" placeholder="Nome do Material *" value={novoMaterial.nome} onChange={e => setNovoMaterial({ ...novoMaterial, nome: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400 md:col-span-2" required />
+                    <input type="number" placeholder="Qtd. Inicial *" value={novoMaterial.quantidade} onChange={e => setNovoMaterial({ ...novoMaterial, quantidade: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" required />
+                    <select value={novoMaterial.unidade} onChange={e => setNovoMaterial({ ...novoMaterial, unidade: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800"><option value="un">Unidades (un)</option><option value="metros">Metros (m)</option><option value="caixas">Caixas (cx)</option><option value="pacotes">Pacotes (pct)</option></select>
                     <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-md text-sm transition">+ Novo Material</button>
                   </form>
                   <div className="overflow-x-auto">
@@ -593,10 +593,10 @@ export default function NetRedeDashboard() {
               {abaAtiva === 'despesas' && (
                 <div className="space-y-6">
                   <form onSubmit={cadastrarDespesa} className="bg-slate-50 p-4 rounded-lg border border-slate-200 grid grid-cols-1 md:grid-cols-5 gap-3">
-                    <input type="text" placeholder="Descrição *" value={novaDespesa.descricao} onChange={e => setNovaDespesa({ ...novaDespesa, descricao: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required />
-                    <select value={novaDespesa.categoria} onChange={e => setNovaDespesa({ ...novaDespesa, categoria: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white"><option value="Gasolina">Gasolina</option><option value="Almoço">Almoço</option><option value="Manutenção">Manutenção</option><option value="Outros">Outros</option></select>
-                    <input type="number" step="0.01" placeholder="Valor (R$) *" value={novaDespesa.valor} onChange={e => setNovaDespesa({ ...novaDespesa, valor: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required />
-                    <input type="date" value={novaDespesa.data} onChange={e => setNovaDespesa({ ...novaDespesa, data: e.target.value })} className="p-2.5 border rounded-md text-sm outline-blue-600 bg-white" required />
+                    <input type="text" placeholder="Descrição *" value={novaDespesa.descricao} onChange={e => setNovaDespesa({ ...novaDespesa, descricao: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" required />
+                    <select value={novaDespesa.categoria} onChange={e => setNovaDespesa({ ...novaDespesa, categoria: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800"><option value="Gasolina">Gasolina</option><option value="Almoço">Almoço</option><option value="Manutenção">Manutenção</option><option value="Outros">Outros</option></select>
+                    <input type="number" step="0.01" placeholder="Valor (R$) *" value={novaDespesa.valor} onChange={e => setNovaDespesa({ ...novaDespesa, valor: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" required />
+                    <input type="date" value={novaDespesa.data} onChange={e => setNovaDespesa({ ...novaDespesa, data: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800" required />
                     <button type="submit" className="bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 rounded-md text-sm transition">+ Registar Despesa</button>
                   </form>
                   <div className="overflow-x-auto">
