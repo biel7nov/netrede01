@@ -812,17 +812,17 @@ export default function NetRedeDashboard() {
   }
 
   const abasDisponiveis = [
-    { id: 'clientes', icon: IconClientes, label: `Clientes (${clientes.length})`, titulo: 'Gestão de Clientes', desc: 'Registro, consulta e acompanhamento dos assinantes da rede.' },
-    { id: 'os', icon: IconOS, label: `Instalações & OS (${ordens.length})`, titulo: 'Ordens de Serviço & Atendimentos', desc: 'Controle de instalações, religamentos, manutenções e emissão de mini OS.' },
-    { id: 'faturamento', icon: IconFaturamento, label: `Faturamento (${pagamentos.length})`, titulo: 'Controle de Faturamento', desc: 'Registro e marcação presencial de mensalidades e faturas pagas.' },
-    { id: 'estoque', icon: IconEstoque, label: `Estoque (${estoque.length})`, titulo: 'Gestão de Estoque', desc: 'Controle de materiais, equipamentos e alertas de saldo baixo.' },
-    { id: 'despesas', icon: IconDespesas, label: `Despesas (${despesas.length})`, titulo: 'Despesas Operacionais', desc: 'Registro de gastos com gasolina, almoços, manutenção e campo.' }
+    { id: 'clientes', icon: IconClientes, label: 'Clientes', titulo: 'Gestão de Clientes', desc: 'Registro, consulta e acompanhamento dos assinantes da rede.' },
+    { id: 'os', icon: IconOS, label: 'Instalações & OS', titulo: 'Ordens de Serviço & Atendimentos', desc: 'Controle de instalações, religamentos, manutenções e emissão de mini OS.' },
+    { id: 'faturamento', icon: IconFaturamento, label: 'Faturamento', titulo: 'Controle de Faturamento', desc: 'Registro e marcação presencial de mensalidades e faturas pagas.' },
+    { id: 'estoque', icon: IconEstoque, label: 'Estoque', titulo: 'Gestão de Estoque', desc: 'Controle de materiais, equipamentos e alertas de saldo baixo.' },
+    { id: 'despesas', icon: IconDespesas, label: 'Despesas', titulo: 'Despesas Operacionais', desc: 'Registro de gastos com gasolina, almoços, manutenção e campo.' }
   ];
 
   if (tipoUsuario === 'Administrador') {
-    abasDisponiveis.push({ id: 'diretoria', icon: IconDiretoria, label: `Despesas Diretoria`, titulo: 'Despesas da Diretoria', desc: 'Registro e acompanhamento de gastos administrativos e da diretoria.' });
-    abasDisponiveis.push({ id: 'funcionarios', icon: IconUsuarios, label: `Funcionários (${funcionarios.length})`, titulo: 'Gestão de Funcionários', desc: 'Controle de equipe, e-mails de acesso e definição de cargos.' });
-    abasDisponiveis.push({ id: 'relatorios', icon: IconRelatorio, label: `Relatórios`, titulo: 'Relatórios de Gestão', desc: 'Indicadores financeiros consolidados, Curva ABC, desempenho técnico e exportação em HTML.' });
+    abasDisponiveis.push({ id: 'diretoria', icon: IconDiretoria, label: 'Despesas Diretoria', titulo: 'Despesas da Diretoria', desc: 'Registro e acompanhamento de gastos administrativos e da diretoria.' });
+    abasDisponiveis.push({ id: 'funcionarios', icon: IconUsuarios, label: 'Funcionários', titulo: 'Gestão de Funcionários', desc: 'Controle de equipe, e-mails de acesso e definição de cargos.' });
+    abasDisponiveis.push({ id: 'relatorios', icon: IconRelatorio, label: 'Relatórios', titulo: 'Relatórios de Gestão', desc: 'Indicadores financeiros consolidados, Curva ABC, desempenho técnico e exportação em HTML.' });
   }
 
   const abaAtualInfo = abasDisponiveis.find(a => a.id === abaAtiva) || abasDisponiveis[0];
