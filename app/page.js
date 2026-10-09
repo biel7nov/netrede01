@@ -255,7 +255,7 @@ export default function NetRedeDashboard() {
     const { error } = await supabase.from('clientes').insert([dadosCliente])
     if (error) toast.error('Erro: ' + error.message)
     else {
-      toast.success('Cliente cadastrado!')
+      toast.success('Cliente cadastrado com sucesso!')
       setNovoCliente({ nome: '', cep: '', endereco: '', telefone: '', funcionario_id: '', status: 'Ativo' })
       carregarDados()
     }
@@ -274,12 +274,24 @@ export default function NetRedeDashboard() {
   }
 
   async function alternarStatusCliente(id, statusAtual) {
-    if (tipoUsuario !== 'Administrador') return toast.error('Funcionários padrão não podem alterar o status de clientes.')
+    if (tipoUsuario !== 'Administrador') return toast.error('Acesso restrito a Administradores.')
     const novoStatus = statusAtual === 'Desligado' ? 'Ativo' : 'Desligado'
     const { error } = await supabase.from('clientes').update({ status: novoStatus }).eq('id', id)
     if (error) toast.error('Erro: ' + error.message)
     else {
       toast.success('Status alterado!')
+      carregarDados()
+    }
+  }
+
+  async function excluirCliente(id) {
+    if (tipoUsuario !== 'Administrador') return toast.error('Apenas Administradores podem excluir clientes.')
+    if (!confirm('Tem certeza que deseja excluir este cliente permanentemente?')) return
+    
+    const { error } = await supabase.from('clientes').delete().eq('id', id)
+    if (error) toast.error('Erro ao excluir: ' + error.message)
+    else {
+      toast.success('Cliente excluído permanentemente!')
       carregarDados()
     }
   }
@@ -1093,6 +1105,7 @@ export default function NetRedeDashboard() {
                                         <button onClick={() => alternarStatusCliente(c.id, c.status || 'Ativo')} className={`px-2.5 py-1 text-xs font-semibold rounded border transition ${c.status === 'Desligado' ? 'border-emerald-600 text-emerald-600' : 'border-rose-500 text-rose-600'}`}>
                                           {c.status === 'Desligado' ? 'Reativar' : 'Desligar'}
                                         </button>
+                                        <button onClick={() => excluirCliente(c.id)} className="px-2.5 py-1 text-xs font-semibold rounded border border-rose-600 bg-rose-50 text-rose-700 hover:bg-rose-100 transition">Excluir</button>
                                       </>
                                     )}
                                   </div>
