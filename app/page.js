@@ -129,18 +129,20 @@ export default function NetRedeDashboard() {
   async function detectarTipoUsuario(email) {
     if (!email) return;
     try {
+      const emailLimpo = email.trim().toLowerCase();
       const { data, error } = await supabase
         .from('usuarios')
-        .select('cargo, funcao')
-        .eq('email', email)
-        .maybeSingle();
+        .select('cargo, funcao, email')
+        .ilike('email', emailLimpo);
 
       if (error) {
         console.error("Erro ao detectar tipo de usuário:", error);
       }
 
-      const cargoOuFuncao = data?.cargo || data?.funcao;
-      if (data && (cargoOuFuncao === 'Responsável' || cargoOuFuncao === 'Administrador' || cargoOuFuncao === 'Técnico')) {
+      const usuarioEncontrado = data && data.length > 0 ? data[0] : null;
+      const cargoOuFuncao = usuarioEncontrado?.cargo || usuarioEncontrado?.funcao;
+
+      if (usuarioEncontrado && (cargoOuFuncao === 'Responsável' || cargoOuFuncao === 'Administrador' || cargoOuFuncao === 'Técnico')) {
         setTipoUsuario('Administrador');
       } else {
         setTipoUsuario('Padrão');
