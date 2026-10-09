@@ -130,18 +130,25 @@ export default function NetRedeDashboard() {
     if (!email) return;
     try {
       const emailLimpo = email.trim().toLowerCase();
+      console.log("Buscando cargo para o e-mail:", emailLimpo);
+
       const { data, error } = await supabase
         .from('usuarios')
-        .select('cargo, funcao, email')
+        .select('*')
         .ilike('email', emailLimpo);
 
       if (error) {
         console.error("Erro ao detectar tipo de usuário:", error);
       }
 
+      console.log("Resultado da consulta de usuários:", data);
+
       const usuarioEncontrado = data && data.length > 0 ? data[0] : null;
       const cargoOuFuncao = usuarioEncontrado?.cargo || usuarioEncontrado?.funcao;
 
+      console.log("Cargo ou Função encontrados:", cargoOuFuncao);
+
+      // FORÇAR ADMIN PARA TESTE SE QUISER, OU CHECAR OS TEXTOS EXATOS:
       if (usuarioEncontrado && (cargoOuFuncao === 'Responsável' || cargoOuFuncao === 'Administrador' || cargoOuFuncao === 'Técnico')) {
         setTipoUsuario('Administrador');
       } else {
