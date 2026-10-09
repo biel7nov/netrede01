@@ -250,7 +250,6 @@ export default function NetRedeDashboard() {
     e.preventDefault()
     if (!novoCliente.nome || !novoCliente.endereco) return toast.error('Preencha nome e endereço.')
     
-    // Remove o campo 'cep' antes de enviar para a tabela do Supabase (evita erro de coluna inexistente)
     const { cep, ...dadosCliente } = novoCliente;
 
     const { error } = await supabase.from('clientes').insert([dadosCliente])
@@ -1068,39 +1067,39 @@ export default function NetRedeDashboard() {
                         </thead>
                         <tbody className="divide-y divide-slate-200">
                           {clientesFiltrados.length === 0 ? <tr><td colSpan="7" className="p-6 text-center text-slate-400">Nenhum cliente encontrado com este filtro.</td></tr> : clientesFiltrados.map(c => {
-                              const statusPag = obterStatusPagamento(c.id)
-                              return (
-                                <tr key={c.id} className="hover:bg-slate-50 transition">
-                                  <td className="p-3 font-semibold text-slate-800">{c.nome}</td>
-                                  <td className="p-3 text-slate-600">{c.endereco}</td>
-                                  <td className="p-3 text-slate-600">{c.telefone || '-'}</td>
-                                  <td className="p-3 font-medium text-blue-600">{c.usuarios?.nome || 'Não atribuído'}</td>
-                                  <td className="p-3">
-                                    <button onClick={() => abrirFaturamentoCliente(c.id)} className={`px-2.5 py-1 text-xs rounded-full cursor-pointer hover:opacity-80 transition ${statusPag.estilo}`}>
-                                      {statusPag.texto}
-                                    </button>
-                                  </td>
-                                  <td className="p-3">
-                                    <span className={`px-2.5 py-1 text-xs font-bold rounded-full ${c.status === 'Desligado' || c.status === 'Inativo' ? 'bg-rose-100 text-rose-800' : 'bg-emerald-100 text-emerald-800'}`}>
-                                      {c.status || 'Ativo'}
-                                    </span>
-                                  </td>
-                                  <td className="p-3 text-center">
-                                    <div className="flex justify-center items-center gap-2">
-                                      <button onClick={() => abrirFaturamentoCliente(c.id)} className="px-2.5 py-1 text-xs font-semibold rounded border border-amber-500 text-amber-600 hover:bg-amber-50 transition">Faturas</button>
-                                      {tipoUsuario === 'Administrador' && (
-                                        <>
-                                          <button onClick={() => setClienteEmEdicao(c)} className="px-2.5 py-1 text-xs font-semibold rounded border border-blue-600 text-blue-600 hover:bg-blue-50 transition">Editar</button>
-                                          <button onClick={() => alternarStatusCliente(c.id, c.status || 'Ativo')} className={`px-2.5 py-1 text-xs font-semibold rounded border transition ${c.status === 'Desligado' ? 'border-emerald-600 text-emerald-600' : 'border-rose-500 text-rose-600'}`}>
-                                            {c.status === 'Desligado' ? 'Reativar' : 'Desligar'}
-                                          </button>
-                                        </>
-                                      )}
-                                    </div>
-                                  </td>
-                                </tr>
-                              )
-                            })}
+                            const statusPag = obterStatusPagamento(c.id)
+                            return (
+                              <tr key={c.id} className="hover:bg-slate-50 transition">
+                                <td className="p-3 font-semibold text-slate-800">{c.nome}</td>
+                                <td className="p-3 text-slate-600">{c.endereco}</td>
+                                <td className="p-3 text-slate-600">{c.telefone || '-'}</td>
+                                <td className="p-3 font-medium text-blue-600">{c.usuarios?.nome || 'Não atribuído'}</td>
+                                <td className="p-3">
+                                  <button onClick={() => abrirFaturamentoCliente(c.id)} className={`px-2.5 py-1 text-xs rounded-full cursor-pointer hover:opacity-80 transition ${statusPag.estilo}`}>
+                                    {statusPag.texto}
+                                  </button>
+                                </td>
+                                <td className="p-3">
+                                  <span className={`px-2.5 py-1 text-xs font-bold rounded-full ${c.status === 'Desligado' || c.status === 'Inativo' ? 'bg-rose-100 text-rose-800' : 'bg-emerald-100 text-emerald-800'}`}>
+                                    {c.status || 'Ativo'}
+                                  </span>
+                                </td>
+                                <td className="p-3 text-center">
+                                  <div className="flex justify-center items-center gap-2">
+                                    <button onClick={() => abrirFaturamentoCliente(c.id)} className="px-2.5 py-1 text-xs font-semibold rounded border border-amber-500 text-amber-600 hover:bg-amber-50 transition">Faturas</button>
+                                    {tipoUsuario === 'Administrador' && (
+                                      <>
+                                        <button onClick={() => setClienteEmEdicao(c)} className="px-2.5 py-1 text-xs font-semibold rounded border border-blue-600 text-blue-600 hover:bg-blue-50 transition">Editar</button>
+                                        <button onClick={() => alternarStatusCliente(c.id, c.status || 'Ativo')} className={`px-2.5 py-1 text-xs font-semibold rounded border transition ${c.status === 'Desligado' ? 'border-emerald-600 text-emerald-600' : 'border-rose-500 text-rose-600'}`}>
+                                          {c.status === 'Desligado' ? 'Reativar' : 'Desligar'}
+                                        </button>
+                                      </>
+                                    )}
+                                  </div>
+                                </td>
+                              </tr>
+                            )
+                          })}
                         </tbody>
                       </table>
                     </div>
@@ -1284,14 +1283,14 @@ export default function NetRedeDashboard() {
                         type="text" 
                         placeholder={novaDespesa.categoria === 'Outros' ? "Descrição Obrigatória *" : "Descrição (Opcional)"} 
                         value={novaDespesa.descricao} 
-                        onChange={e => setNovoDespesa({ ...novaDespesa, descricao: e.target.value })} 
+                        onChange={e => setNovaDespesa({ ...novaDespesa, descricao: e.target.value })} 
                         className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" 
                         required={novaDespesa.categoria === 'Outros'}
                       />
-                      <select value={novaDespesa.categoria} onChange={e => setNovoDespesa({ ...novaDespesa, categoria: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800"><option value="Gasolina">Gasolina</option><option value="Almoço">Almoço</option><option value="Manutenção">Manutenção</option><option value="Outros">Outros</option></select>
-                      <input type="number" step="0.01" placeholder="Valor (R$) *" value={novaDespesa.valor} onChange={e => setNovoDespesa({ ...novaDespesa, valor: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" required />
-                      <input type="date" value={novaDespesa.data} onChange={e => setNovoDespesa({ ...novaDespesa, data: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800" required />
-                      <select value={novaDespesa.funcionario_id} onChange={e => setNovoDespesa({ ...novaDespesa, funcionario_id: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800">
+                      <select value={novaDespesa.categoria} onChange={e => setNovaDespesa({ ...novaDespesa, categoria: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800"><option value="Gasolina">Gasolina</option><option value="Almoço">Almoço</option><option value="Manutenção">Manutenção</option><option value="Outros">Outros</option></select>
+                      <input type="number" step="0.01" placeholder="Valor (R$) *" value={novaDespesa.valor} onChange={e => setNovaDespesa({ ...novaDespesa, valor: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800 placeholder:text-slate-400" required />
+                      <input type="date" value={novaDespesa.data} onChange={e => setNovaDespesa({ ...novaDespesa, data: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800" required />
+                      <select value={novaDespesa.funcionario_id} onChange={e => setNovaDespesa({ ...novaDespesa, funcionario_id: e.target.value })} className="p-2.5 border border-slate-300 rounded-md text-sm outline-blue-600 bg-white text-slate-800">
                         <option value="">Funcionário...</option>
                         {funcionarios.map(f => <option key={f.id} value={f.id}>{f.nome}</option>)}
                       </select>
